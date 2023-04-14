@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { InvestmentInterface } from 'src/app/models/interfaces/Investment.model';
+import * as CustomRescueAction from '../../store/custom-rescue/custom-rescue.actions';
 
 const MOCK =  [
   {
@@ -33,7 +37,24 @@ const MOCK =  [
   templateUrl: './custom-rescue.component.html',
   styleUrls: ['./custom-rescue.component.scss']
 })
-export class CustomRescueComponent {
+export class CustomRescueComponent implements OnInit {
+  customRescue$: Observable<InvestmentInterface>;
   displayedColumns: string[] = ['action', 'accumulatedBalance', 'valueToRedeem'];
   dataSource = MOCK;
+  investment: InvestmentInterface = {
+    acoes: [],
+    indicadorCarencia: '',
+    nome: '',
+    objetivo: '',
+    saldoTotal: 0,
+  };
+
+  constructor(private store: Store<{ customRescueReducer: InvestmentInterface }>) { 
+    this.customRescue$ = this.store.select('customRescueReducer');
+    
+  }
+
+  ngOnInit(): void {
+    this.customRescue$.subscribe(state => this.investment = state);
+  }
 }

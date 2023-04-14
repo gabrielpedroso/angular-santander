@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { ResponseStateInterface } from "./app.state";
-import * as AppActions from './app.actions';
+import { ResponseStateInterface } from "./investment-list.state";
+import * as AppActions from './investment-list.actions';
 
 export const initialState: ResponseStateInterface = {
     response: {
@@ -11,7 +11,7 @@ export const initialState: ResponseStateInterface = {
     }
 };
 
-export const appReducer = createReducer(initialState,
+export const investmentListReducer = createReducer(initialState,
     on(AppActions.fetch, () => ({
         ...initialState,
     })),
@@ -24,4 +24,3 @@ export const appReducer = createReducer(initialState,
         }
     })),
 );
-

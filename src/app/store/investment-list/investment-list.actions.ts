@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { AppStateInterface } from "./app.state";
+import { AppStateInterface } from "./investment-list.state";
 
 const prefix = '@investment-list';
 const ACTION_FETCH = `${prefix}.FETCH`;

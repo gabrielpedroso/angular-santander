@@ -5,17 +5,17 @@
             <app-header-content 
                 icon="home"
                 title="Nome"
-                content="INVESTIMENTO">
+                [content]="investment.nome">
             </app-header-content>
             <app-header-content 
                 icon="home"
                 title="Objetivo"
-                content="Abrir meu proprio negocio">
+                [content]="investment.objetivo">
             </app-header-content>
             <app-header-content 
                 icon="home"
                 title="Saldo Total"
-                content="26.0000">
+                [content]="investment.saldoTotal.toString()">
             </app-header-content>
         </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="container-value-to-redeem">
         <span>RESGATE</span>
         
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="investment.acoes" class="mat-elevation-z8">
             <ng-container  matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef> Acao </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{ element.nome }} </mat-cell>

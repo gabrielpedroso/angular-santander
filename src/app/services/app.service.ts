@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseStateInterface } from '../store/app.state';
+import { ResponseStateInterface } from '../store/investment-list/investment-list.state';
 
 @Injectable({ providedIn: 'root' })
 export class AppService {

@@ -8,8 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
 
-import { appReducer } from './store/app.reducer';
-import { AppEffects } from './store/app.effects';
+import { rootEffects, rootReducers } from './store/index';
 
 import { AppComponent } from './app.component';
 import { InvestmentListComponent } from './components/investment-list/investment-list.component';
@@ -29,8 +28,8 @@ import { HeaderContentComponent } from './components/header-content/header-conte
     AppRoutingModule,
     AppMaterialModule,
     HttpClientModule,
-    StoreModule.forRoot({ app: appReducer }),
-    EffectsModule.forRoot([AppEffects]),
+    StoreModule.forRoot(rootReducers),
+    EffectsModule.forRoot(rootEffects),
   ],
   providers: [],
   bootstrap: [AppComponent]
