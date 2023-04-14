@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import * as CustomRescueAction from "./custom-rescue.actions";
-import { InvestmentInterface } from "src/app/models/interfaces/Investment.model";
+import { InvestmentInterface } from "src/app/models/interfaces/investment.model";
 
 const initialState: InvestmentInterface = {
     nome: '',

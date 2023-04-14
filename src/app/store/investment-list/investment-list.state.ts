@@ -1,4 +1,4 @@
-import { InvestmentInterface } from "src/app/models/interfaces/Investment.model";
+import { InvestmentInterface } from "src/app/models/interfaces/investment.model";
 
 export interface ResponseStateInterface {
     response: AppStateInterface;

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ResponseStateInterface } from 'src/app/store/investment-list/investment-list.state';
 import * as AppActions from '../../store/investment-list/investment-list.actions';
 import * as CustomRescue from '../../store/custom-rescue/custom-rescue.actions';
-import { InvestmentInterface } from 'src/app/models/interfaces/Investment.model';
+import { InvestmentInterface } from 'src/app/models/interfaces/investment.model';
 import { Router } from '@angular/router';
 
 @Component({

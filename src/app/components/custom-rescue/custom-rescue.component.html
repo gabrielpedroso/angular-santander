@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container-investment-data">
         <span>DADOS DO INVESTIMENTO</span>
-        <div class="data-container">
+        <div class="container-investment-data-content">
             <app-header-content 
                 icon="home"
                 title="Nome"
@@ -31,7 +31,7 @@
         
             <ng-container  matColumnDef="accumulatedBalance">
                 <mat-header-cell *matHeaderCellDef> Saldo Acumulado </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{ element.percentual }} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{ investment.saldoTotal * (element.percentual / 100) }} </mat-cell>
             </ng-container>
         
             <ng-container  matColumnDef="valueToRedeem">

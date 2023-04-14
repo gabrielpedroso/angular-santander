@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { InvestmentInterface } from "src/app/models/interfaces/Investment.model";
+import { InvestmentInterface } from "src/app/models/interfaces/investment.model";
 
 const prefix = '@custom-rescue';
 const ACTION_SAVE_INVESTMENT = `${prefix}.SAVE_INVESTMENT`;
