@@ -54,7 +54,7 @@
     </div>
     
     <div class="container-buttons">
-        <button  mat-flat-button type="button">CANCELAR</button>
-        <button mat-flat-button color="primary" type="button">CONFIRMAR RESGATE</button>
+        <button  mat-flat-button type="button" (click)="openErrorModal()">CANCELAR</button>
+        <button mat-flat-button color="primary" type="button" (click)="openSuccessModal()">CONFIRMAR RESGATE</button>
     </div>
 </div>
