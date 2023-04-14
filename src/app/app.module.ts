@@ -8,16 +8,21 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
 
-import { AppComponent } from './app.component';
-import { InvestmentListComponent } from './components/investment-list/investment-list.component';
 import { appReducer } from './store/app.reducer';
 import { AppEffects } from './store/app.effects';
+
+import { AppComponent } from './app.component';
+import { InvestmentListComponent } from './components/investment-list/investment-list.component';
+import { CustomRescueComponent } from './components/custom-rescue/custom-rescue.component';
+import { HeaderContentComponent } from './components/header-content/header-content.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InvestmentListComponent,
+    CustomRescueComponent,
+    HeaderContentComponent,
   ],
   imports: [
     BrowserModule,

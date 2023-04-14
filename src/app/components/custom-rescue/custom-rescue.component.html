@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="container-investment-data">
+        <span>DADOS DO INVESTIMENTO</span>
+        <div class="data-container">
+            <app-header-content 
+                icon="home"
+                title="Nome"
+                content="INVESTIMENTO">
+            </app-header-content>
+            <app-header-content 
+                icon="home"
+                title="Objetivo"
+                content="Abrir meu proprio negocio">
+            </app-header-content>
+            <app-header-content 
+                icon="home"
+                title="Saldo Total"
+                content="26.0000">
+            </app-header-content>
+        </div>
+    </div>
+    
+    <div class="container-value-to-redeem">
+        <span>RESGATE</span>
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container  matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef> Acao </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element.nome }} </mat-cell>
+            </ng-container>
+        
+            <ng-container  matColumnDef="accumulatedBalance">
+                <mat-header-cell *matHeaderCellDef> Saldo Acumulado </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element.percentual }} </mat-cell>
+            </ng-container>
+        
+            <ng-container  matColumnDef="valueToRedeem">
+                <mat-header-cell *matHeaderCellDef> Valor a resgatar </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <!-- <mat-form-field appearance="outline">
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field> -->
+                </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+        
+        <div class="container-value-to-redeem-amount">
+            <span>Valor total do resgate: </span>
+            <span>R$: 15000</span>
+        </div>
+    </div>
+    
+    <div class="container-buttons">
+        <button  mat-flat-button type="button">CANCELAR</button>
+        <button mat-flat-button color="primary" type="button">CONFIRMAR RESGATE</button>
+    </div>
+</div>
