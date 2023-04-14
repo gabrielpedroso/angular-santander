@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ResponseStateInterface } from 'src/app/store/investment-list/investment-list.state';
 import * as AppActions from '../../store/investment-list/investment-list.actions';
 import * as CustomRescue from '../../store/custom-rescue/custom-rescue.actions';
-import { InvestmentInterface } from 'src/app/models/interfaces/investment.model';
+import { InvestmentStateInterface } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,14 +15,14 @@ import { Router } from '@angular/router';
 export class InvestmentListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'objective', 'currentBalance'];
   investment$: Observable<ResponseStateInterface>;
-  customRescue$: Observable<InvestmentInterface>;
-  dataSource: Array<InvestmentInterface> = [];
+  customRescue$: Observable<InvestmentStateInterface>;
+  dataSource: Array<InvestmentStateInterface> = [];
 
   constructor(
     public router: Router,
     private store: Store<{ 
       investmentListReducer: ResponseStateInterface, 
-      customRescueReducer: InvestmentInterface 
+      customRescueReducer: InvestmentStateInterface 
     }>) { 
     this.investment$ = this.store.select('investmentListReducer');
     this.customRescue$ = this.store.select('customRescueReducer');
@@ -33,7 +33,7 @@ export class InvestmentListComponent implements OnInit {
     this.investment$.subscribe(state => this.dataSource = state.response.data.listaInvestimentos);
   }
 
-  goToDetail(investment: InvestmentInterface) {
+  goToDetail(investment: InvestmentStateInterface) {
     this.store.dispatch(CustomRescue.save_investment({ payload: investment }));
     this.router.navigate(['teste']);
   }

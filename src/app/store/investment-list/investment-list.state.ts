@@ -1,4 +1,4 @@
-import { InvestmentInterface } from "src/app/models/interfaces/investment.model";
+import { InvestmentStateInterface } from "src/app/store/app.state";
 
 export interface ResponseStateInterface {
     response: AppStateInterface;
@@ -10,5 +10,5 @@ export interface AppStateInterface {
 }
 
 export interface InvestimentListStateInterface {
-    listaInvestimentos: Array<InvestmentInterface>;
+    listaInvestimentos: Array<InvestmentStateInterface>;
 }

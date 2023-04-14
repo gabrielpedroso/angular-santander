@@ -1,8 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
 import * as CustomRescueAction from "./custom-rescue.actions";
-import { InvestmentInterface } from "src/app/models/interfaces/investment.model";
+import { InvestmentStateInterface } from "src/app/store/app.state";
 
-const initialState: InvestmentInterface = {
+const initialState: InvestmentStateInterface = {
     nome: '',
     objetivo: '',
     saldoTotal: 0,
