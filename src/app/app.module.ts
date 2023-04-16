@@ -18,6 +18,7 @@ import { CustomRescueComponent } from './components/custom-rescue/custom-rescue.
 import { HeaderContentComponent } from './components/header-content/header-content.component';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,14 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     AppMaterialModule,
-    HttpClientModule,
     StoreModule.forRoot(rootReducers),
     EffectsModule.forRoot(rootEffects),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
