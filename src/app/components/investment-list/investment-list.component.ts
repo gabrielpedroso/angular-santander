@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ResponseStateInterface } from 'src/app/store/investment-list/investment-list.state';
-import * as AppActions from '../../store/investment-list/investment-list.actions';
-import * as CustomRescue from '../../store/custom-rescue/custom-rescue.actions';
-import { InvestmentStateInterface } from 'src/app/store/app.state';
+import { IInvestmentListItemState, IResponseState } from 'src/app/store/investment-list/investment-list.state';
 import { Router } from '@angular/router';
+import { loadInvestmentList } from 'src/app/store/investment-list/investment-list.actions';
+import { saveInvestment } from 'src/app/store/custom-rescue/custom-rescue.actions';
 
 @Component({
   selector: 'app-investment-list',
@@ -14,27 +13,27 @@ import { Router } from '@angular/router';
 })
 export class InvestmentListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'objective', 'currentBalance'];
-  investment$: Observable<ResponseStateInterface>;
-  customRescue$: Observable<InvestmentStateInterface>;
-  dataSource: Array<InvestmentStateInterface> = [];
+  investment$: Observable<IResponseState>;
+  customRescue$: Observable<IInvestmentListItemState>;
+  dataSource: Array<IInvestmentListItemState> = [];
 
   constructor(
     public router: Router,
     private store: Store<{ 
-      investmentListReducer: ResponseStateInterface, 
-      customRescueReducer: InvestmentStateInterface 
+      investmentListReducer: IResponseState, 
+      customRescueReducer: IInvestmentListItemState 
     }>) { 
     this.investment$ = this.store.select('investmentListReducer');
     this.customRescue$ = this.store.select('customRescueReducer');
   }
 
   ngOnInit(): void {
-    this.store.dispatch(AppActions.fetch());
+    this.store.dispatch(loadInvestmentList());
     this.investment$.subscribe(state => this.dataSource = state.response.data.listaInvestimentos);
   }
 
-  goToDetail(investment: InvestmentStateInterface) {
-    this.store.dispatch(CustomRescue.save_investment({ payload: investment }));
+  goToDetail(investment: IInvestmentListItemState) {
+    this.store.dispatch(saveInvestment({ payload: investment }));
     this.router.navigate(['teste']);
   }
 }

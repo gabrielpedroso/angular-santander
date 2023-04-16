@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import * as CustomRescueActions from './custom-rescue.actions';
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { saveInvestment, saveInvestmentSuccess } from "./custom-rescue.actions";
 
 @Injectable()
 export class CustomRescueEffects {
     save$ = createEffect(() => this.actions$.pipe(
-        ofType(CustomRescueActions.save_investment),
+        ofType(saveInvestment),
         pipe(
             map(({ payload }) => {
-                return CustomRescueActions.save_investment_success({ payload })
-            })
+                return saveInvestmentSuccess({ payload })
+            }),
         )
     ));
 

@@ -1,17 +1,26 @@
 import { createReducer, on } from "@ngrx/store";
-import * as CustomRescueAction from "./custom-rescue.actions";
-import { InvestmentStateInterface } from "src/app/store/app.state";
+import { IInvestmentListItemState } from "../investment-list/investment-list.state";
+import { saveInvestment, saveInvestmentError, saveInvestmentSuccess } from "./custom-rescue.actions";
 
-const initialState: InvestmentStateInterface = {
+const initialState: IInvestmentListItemState = {
     nome: '',
     objetivo: '',
     saldoTotal: 0,
     indicadorCarencia: '', 
-    acoes: []
+    acoes: [],
 }
 
 export const customRescueReducer = createReducer(initialState,
-    on(CustomRescueAction.save_investment_success, (state, { payload }) => ({
-        ...payload
+    on(saveInvestment, (state) => ({
+        ...state,
+    })),
+
+    on(saveInvestmentSuccess, (state, { payload }) => ({
+        ...state,
+        ...payload,
+    })),
+
+    on(saveInvestmentError, (state) => ({
+        ...state,
     })),
 );

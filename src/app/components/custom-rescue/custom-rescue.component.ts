@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { InvestmentStateInterface } from 'src/app/store/app.state';
 import { SuccessModalComponent } from '../success-modal/success-modal.component';
 import { ErrorModalComponent } from '../error-modal/error-modal.component';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { IInvestmentListItemState } from 'src/app/store/investment-list/investment-list.state';
 
 @Component({
   selector: 'app-custom-rescue',
@@ -13,15 +13,15 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./custom-rescue.component.scss']
 })
 export class CustomRescueComponent implements OnInit {
-  customRescue$: Observable<InvestmentStateInterface>;
+  customRescue$: Observable<IInvestmentListItemState>;
   displayedColumns: string[] = ['action', 'accumulatedBalance', 'valueToRedeem'];
-  investment: InvestmentStateInterface;
+  investment: IInvestmentListItemState;
   thisIsMyForm;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private store: Store<{ customRescueReducer: InvestmentStateInterface }>
+    private store: Store<{ customRescueReducer: IInvestmentListItemState }>
   ) { 
     this.customRescue$ = this.store.select('customRescueReducer');
     this.thisIsMyForm = new FormGroup({

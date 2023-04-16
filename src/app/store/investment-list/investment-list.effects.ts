@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AppService } from "../../services/app.service";
-import * as AppActions from './investment-list.actions';
-import { exhaustMap, map } from "rxjs";
+import { exhaustMap, catchError, map } from "rxjs";
+import { loadInvestmentList, loadInvestmentListError, loadInvestmentListSuccess } from "./investment-list.actions";
 
 @Injectable()
 export class InvestmentListEffects {
     fetch$ = createEffect(() => this.actions$.pipe(
-        ofType(AppActions.fetch),
+        ofType(loadInvestmentList),
         exhaustMap(() => {
             return this.service.fetch().pipe( 
-                map((response) => {
-                    return AppActions.fetch_success({ payload: response.response })
-                })
+                map((result) => {
+                    return loadInvestmentListSuccess({ response: result.response })
+                }),
             )
         })
     ));

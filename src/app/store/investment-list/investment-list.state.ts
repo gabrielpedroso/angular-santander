@@ -1,14 +1,28 @@
-import { InvestmentStateInterface } from "src/app/store/app.state";
 
-export interface ResponseStateInterface {
-    response: AppStateInterface;
+export interface IResponseState {
+    response: INomeADefinir;
+    isLoading: boolean;
 }
 
-export interface AppStateInterface {
+export interface INomeADefinir {
     status: string;
-    data: InvestimentListStateInterface;
+    data: IInvestmntListState;
 }
 
-export interface InvestimentListStateInterface {
-    listaInvestimentos: Array<InvestmentStateInterface>;
+export interface IInvestmntListState {
+    listaInvestimentos: IInvestmentListItemState[];
+}
+
+export interface IInvestmentListItemState {
+    nome: string;
+    objetivo: string;
+    saldoTotal: number;
+    indicadorCarencia: string;
+    acoes: Array<IFinancialStocksState>;
+}
+
+export interface IFinancialStocksState {
+    id: string;
+    nome: string;
+    percentual: number;
 }
