@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SuccessModalComponent } from '../success-modal/success-modal.component';
 import { ErrorModalComponent } from '../error-modal/error-modal.component';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IInvestmentListItemState } from 'src/app/store/investment-list/investment-list.state';
+import { getCustomRescue } from 'src/app/store/custom-rescue/custom-rescue.selector';
 
 @Component({
   selector: 'app-custom-rescue',
@@ -13,17 +14,16 @@ import { IInvestmentListItemState } from 'src/app/store/investment-list/investme
   styleUrls: ['./custom-rescue.component.scss']
 })
 export class CustomRescueComponent implements OnInit {
-  customRescue$: Observable<IInvestmentListItemState>;
   displayedColumns: string[] = ['action', 'accumulatedBalance', 'valueToRedeem'];
+  customRescue$ = this.store.pipe(select(getCustomRescue))
   investment: IInvestmentListItemState;
   thisIsMyForm;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private store: Store<{ customRescueReducer: IInvestmentListItemState }>
+    private store: Store,
   ) { 
-    this.customRescue$ = this.store.select('customRescueReducer');
     this.thisIsMyForm = new FormGroup({
       formArrayName: this.formBuilder.array([])
     });
