@@ -49,15 +49,14 @@ export class CustomRescueComponent implements OnInit {
     });
   }
 
-  openSuccessModal() {
-    console.log(this.thisIsMyForm.value.formArrayName?.forEach((value: any) => {
-      console.log(value.valueToRedeem)
-    }));
-    this.dialog.open(SuccessModalComponent, { width: '623px' });
-  }
-
-  openErrorModal() {
-    this.dialog.open(ErrorModalComponent, { width: '623px' });
+  openModal() {
+    const test = this.thisIsMyForm.value.formArrayName?.filter((value: any) => value.valueToRedeem > value.accumulatedBalance);
+    
+    if (test?.length) {
+      this.dialog.open(ErrorModalComponent, { width: '623px', data: test });
+    } else {
+      this.dialog.open(SuccessModalComponent, { width: '623px' });
+    }
   }
 
   getSomaTotal() {
@@ -75,7 +74,7 @@ export class CustomRescueComponent implements OnInit {
 
     this.thisIsMyForm.value.formArrayName?.forEach((value: any) => {
       if (value.id == id)
-        show = value.valueToRedeem > 0;
+        show = value.valueToRedeem > value.accumulatedBalance;
     });
 
     return show;

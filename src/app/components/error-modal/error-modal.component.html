@@ -7,6 +7,10 @@
     <div class="container-content">
         <span>DADOS INVÁLIDOS!</span>
         <span>Voce preencheu um ou mais campos com um valor acima do permitido:</span>
+        <div *ngFor="let x of data; let i = index">
+            <span>{{ x.action }}: </span>
+            <span>O valor a resgatar n pode ser maior que {{ x.accumulatedBalance }}</span>
+        </div>
         <button mat-raised-button color="primary" type="button">Corrigir</button>
     </div>
 </div>
