@@ -22,34 +22,37 @@
     
     <div class="container-value-to-redeem">
         <span>RESGATE</span>
-        
-        <table mat-table [dataSource]="investment.acoes" class="mat-elevation-z8">
-            <ng-container  matColumnDef="action">
-                <mat-header-cell *matHeaderCellDef> Acao </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{ element.nome }} </mat-cell>
-            </ng-container>
-        
-            <ng-container  matColumnDef="accumulatedBalance">
-                <mat-header-cell *matHeaderCellDef> Saldo Acumulado </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{ investment.saldoTotal * (element.percentual / 100) }} </mat-cell>
-            </ng-container>
-        
-            <ng-container  matColumnDef="valueToRedeem">
-                <mat-header-cell *matHeaderCellDef> Valor a resgatar </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <!-- <mat-form-field appearance="outline">
-                        <input matInput placeholder="Placeholder">
-                    </mat-form-field> -->
-                </mat-cell>
-            </ng-container>
-        
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </table>
+
+        <div class="container-value-to-redeem-table">
+            <div class="container-value-to-redeem-table-header">
+                <span>Acao</span>
+                <span>Saldo Acumulado</span>
+                <span>Valor a resgatar</span>
+            </div>
+            <mat-divider></mat-divider>
+            <form id="myForm" [formGroup]="thisIsMyForm">
+                <div [formArrayName]="'formArrayName'">
+                    <div *ngFor="let x of investment.acoes; let i = index">
+                        <div class="container-value-to-redeem-table-content-row" [formGroupName]="i">
+                            <span style="padding: 0 1rem; align-self: center;">{{ x.nome }}</span>
+                            <span style="padding: 0 1rem; align-self: center;">{{ investment.saldoTotal * (x.percentual / 100) }}</span>
+                            <div style="padding: 0 1rem; align-self: center;" class="container-value-to-redeem-table-content-row-input">
+                                <mat-form-field appearance="outline" class="container-value-to-redeem-table-content-row-input-teste">
+                                    <mat-label>Digite quanto quer resgatar</mat-label>
+                                    <input type="number" min="0" formControlName="valueToRedeem" matInput>
+                                </mat-form-field>
+                                <span *ngIf="mostrar(i)">O valor a resgatar nao pode ser maior que R$ {{ investment.saldoTotal * (x.percentual / 100) }}</span>
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </div>
+                </div>
+            </form>
+        </div>
         
         <div class="container-value-to-redeem-amount">
             <span>Valor total do resgate: </span>
-            <span>R$: 15000</span>
+            <span>R$: {{ getSomaTotal() }}</span>
         </div>
     </div>
     
