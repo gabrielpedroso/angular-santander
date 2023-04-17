@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { loadInvestmentList } from 'src/app/store/investment-list/investment-list.actions';
 import { saveInvestment } from 'src/app/store/custom-rescue/custom-rescue.actions';
 import { getInvestmentList } from 'src/app/store/investment-list/investment-list.selector';
+import { MonetaryShortage } from 'src/shared/enum/monetary-shortage';
 
 @Component({
   selector: 'app-investment-list',
@@ -26,7 +27,9 @@ export class InvestmentListComponent {
 
   goToDetail(investment: IInvestmentListItemState) {
     this.store.dispatch(saveInvestment({ payload: investment }));
-    this.router.navigate(['teste']);
+    
+    if (investment.indicadorCarencia == MonetaryShortage.NO)
+      this.router.navigate(['teste']);
   }
 
   formatMoney(value: number) {
