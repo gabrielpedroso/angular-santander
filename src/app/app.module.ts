@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
@@ -18,7 +21,6 @@ import { CustomRescueComponent } from './components/custom-rescue/custom-rescue.
 import { HeaderContentComponent } from './components/header-content/header-content.component';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    CurrencyMaskModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
