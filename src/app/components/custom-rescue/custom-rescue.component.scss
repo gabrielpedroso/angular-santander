@@ -41,7 +41,7 @@
                 grid-template-columns: .5fr .5fr 1fr;
                 padding: 1rem 0;
 
-                span {
+                &-column {
                     padding: 0 1rem; 
                     align-self: center;
                 }

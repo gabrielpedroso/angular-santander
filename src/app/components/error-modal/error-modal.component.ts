@@ -12,4 +12,12 @@ export class ErrorModalComponent {
     public dialogRef: MatDialogRef<ErrorModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
+
+  formatMoney(value: number) {
+    return new Intl.NumberFormat('pt-Br', { currency: 'BRL', style: 'currency' }).format(value);
+  }
+
+  close() {
+    this.dialogRef.close();
+  }
 }

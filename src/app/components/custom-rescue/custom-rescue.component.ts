@@ -7,6 +7,7 @@ import { ErrorModalComponent } from '../error-modal/error-modal.component';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IInvestmentListItemState } from 'src/app/store/investment-list/investment-list.state';
 import { getCustomRescue } from 'src/app/store/custom-rescue/custom-rescue.selector';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-custom-rescue',
@@ -25,6 +26,7 @@ export class CustomRescueComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private store: Store,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class CustomRescueComponent implements OnInit {
       soma += Number(value.valueToRedeem);
     })
 
-    return this.formatMoney(soma);
+    return soma;
   }
 
   mostrar(id: number) {
@@ -80,5 +82,13 @@ export class CustomRescueComponent implements OnInit {
 
   formatMoney(value: number) {
     return new Intl.NumberFormat('pt-Br', { currency: 'BRL', style: 'currency' }).format(value);
+  }
+
+  get hasValue() {
+    return this.getSomaTotal() > 0;
+  }
+
+  goToInvestmentList() {
+    this.router.navigate(['']);
   }
 }

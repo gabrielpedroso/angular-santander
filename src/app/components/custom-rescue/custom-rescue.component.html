@@ -34,8 +34,12 @@
                 <div [formArrayName]="'formArrayName'">
                     <div *ngFor="let x of investment.acoes; let i = index">
                         <div class="container-value-to-redeem-table-content-row" [formGroupName]="i">
-                            <span>{{ x.nome }}</span>
-                            <span>{{ formatMoney(investment.saldoTotal * (x.percentual / 100)) }}</span>
+                            <span class="container-value-to-redeem-table-content-row-column">
+                                {{ x.nome }}
+                            </span>
+                            <span class="container-value-to-redeem-table-content-row-column">
+                                {{ formatMoney(investment.saldoTotal * (x.percentual / 100)) }}
+                            </span>
                             <div class="container-value-to-redeem-table-content-row-input">
                                 <mat-form-field appearance="outline" class="container-value-to-redeem-table-content-row-input-teste">
                                     <mat-label>Digite quanto quer resgatar</mat-label>
@@ -63,12 +67,24 @@
         
         <div class="container-value-to-redeem-amount">
             <span>Valor total do resgate: </span>
-            <span>{{ getSomaTotal() }}</span>
+            <span>{{ formatMoney(getSomaTotal()) }}</span>
         </div>
     </div>
     
     <div class="container-buttons">
-        <button  mat-flat-button type="button">CANCELAR</button>
-        <button mat-flat-button color="primary" type="button" (click)="openModal()">CONFIRMAR RESGATE</button>
+        <button  
+            mat-flat-button 
+            type="button"
+            (click)="goToInvestmentList()">
+            CANCELAR
+        </button>
+        <button 
+            mat-flat-button 
+            color="primary" 
+            type="button" 
+            (click)="openModal()"
+            [disabled]="!hasValue">
+            CONFIRMAR RESGATE
+        </button>
     </div>
 </div>
