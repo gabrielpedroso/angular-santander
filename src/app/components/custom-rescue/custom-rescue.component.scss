@@ -41,10 +41,21 @@
                 grid-template-columns: .5fr .5fr 1fr;
                 padding: 1rem 0;
 
+                span {
+                    padding: 0 1rem; 
+                    align-self: center;
+                }
+
                 &-input {
                     display: flex;
                     flex-direction: column;
                     gap: .25rem;
+                    padding: 0 1rem; 
+                    align-self: center;
+
+                    &-erro {
+                        color: red;
+                    }
 
                     &-teste {
                         max-width: 250px;

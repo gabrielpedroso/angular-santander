@@ -15,7 +15,7 @@
             <app-header-content 
                 icon="monetization_on"
                 title="Saldo Total"
-                [content]="investment.saldoTotal.toString()">
+                [content]="formatMoney(investment.saldoTotal)">
             </app-header-content>
         </div>
     </div>
@@ -34,14 +34,16 @@
                 <div [formArrayName]="'formArrayName'">
                     <div *ngFor="let x of investment.acoes; let i = index">
                         <div class="container-value-to-redeem-table-content-row" [formGroupName]="i">
-                            <span style="padding: 0 1rem; align-self: center;">{{ x.nome }}</span>
-                            <span style="padding: 0 1rem; align-self: center;">{{ investment.saldoTotal * (x.percentual / 100) }}</span>
-                            <div style="padding: 0 1rem; align-self: center;" class="container-value-to-redeem-table-content-row-input">
+                            <span>{{ x.nome }}</span>
+                            <span>{{ formatMoney(investment.saldoTotal * (x.percentual / 100)) }}</span>
+                            <div class="container-value-to-redeem-table-content-row-input">
                                 <mat-form-field appearance="outline" class="container-value-to-redeem-table-content-row-input-teste">
                                     <mat-label>Digite quanto quer resgatar</mat-label>
                                     <input type="number" min="0" formControlName="valueToRedeem" matInput>
                                 </mat-form-field>
-                                <span *ngIf="mostrar(i)">O valor a resgatar nao pode ser maior que R$ {{ investment.saldoTotal * (x.percentual / 100) }}</span>
+                                <span class="container-value-to-redeem-table-content-row-input-erro" *ngIf="mostrar(i)">
+                                    O valor a resgatar nao pode ser maior que {{ formatMoney(investment.saldoTotal * (x.percentual / 100)) }}
+                                </span>
                             </div>
                         </div>
                         <mat-divider></mat-divider>
@@ -52,7 +54,7 @@
         
         <div class="container-value-to-redeem-amount">
             <span>Valor total do resgate: </span>
-            <span>R$: {{ getSomaTotal() }}</span>
+            <span>{{ getSomaTotal() }}</span>
         </div>
     </div>
     

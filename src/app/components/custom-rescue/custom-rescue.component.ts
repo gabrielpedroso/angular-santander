@@ -15,19 +15,17 @@ import { getCustomRescue } from 'src/app/store/custom-rescue/custom-rescue.selec
 })
 export class CustomRescueComponent implements OnInit {
   displayedColumns: string[] = ['action', 'accumulatedBalance', 'valueToRedeem'];
-  customRescue$ = this.store.pipe(select(getCustomRescue))
+  customRescue$ = this.store.pipe(select(getCustomRescue));
+  thisIsMyForm = new FormGroup({
+    formArrayName: this.formBuilder.array([])
+  });
   investment: IInvestmentListItemState;
-  thisIsMyForm;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private store: Store,
-  ) { 
-    this.thisIsMyForm = new FormGroup({
-      formArrayName: this.formBuilder.array([])
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
     this.customRescue$.subscribe((state) => this.investment = state);
@@ -43,7 +41,7 @@ export class CustomRescueComponent implements OnInit {
           id: i,
           action:this.investment.acoes[parseInt(i)].nome,
           accumulatedBalance: this.investment.saldoTotal * (this.investment.acoes[parseInt(i)].percentual / 100),
-          valueToRedeem: new FormControl({ value: '', disabled: false })
+          valueToRedeem: new FormControl({ value: null, disabled: false })
         })
       )
     });
@@ -66,7 +64,7 @@ export class CustomRescueComponent implements OnInit {
       soma += Number(value.valueToRedeem);
     })
 
-    return soma;
+    return this.formatMoney(soma);
   }
 
   mostrar(id: number) {
@@ -78,5 +76,9 @@ export class CustomRescueComponent implements OnInit {
     });
 
     return show;
+  }
+
+  formatMoney(value: number) {
+    return new Intl.NumberFormat('pt-Br', { currency: 'BRL', style: 'currency' }).format(value);
   }
 }

@@ -28,4 +28,8 @@ export class InvestmentListComponent {
     this.store.dispatch(saveInvestment({ payload: investment }));
     this.router.navigate(['teste']);
   }
+
+  formatMoney(value: number) {
+    return new Intl.NumberFormat('pt-Br', { currency: 'BRL', style: 'currency' }).format(value);
+  }
 }
