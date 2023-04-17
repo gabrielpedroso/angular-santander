@@ -29,7 +29,7 @@ export class InvestmentListComponent {
     this.store.dispatch(saveInvestment({ payload: investment }));
     
     if (investment.indicadorCarencia == MonetaryShortage.NO)
-      this.router.navigate(['teste']);
+      this.router.navigate(['resgate-personalizado']);
   }
 
   formatMoney(value: number) {

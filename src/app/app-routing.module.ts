@@ -6,7 +6,7 @@ import { CustomRescueComponent } from "./components/custom-rescue/custom-rescue.
 
 const routes: Routes = [
     { path: '', component: InvestmentListComponent },
-    { path: 'teste', component: CustomRescueComponent },
+    { path: 'resgate-personalizado', component: CustomRescueComponent },
 ];
 
 @NgModule({

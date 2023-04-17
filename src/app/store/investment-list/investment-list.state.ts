@@ -1,10 +1,10 @@
 
 export interface IResponseState {
-    response: INomeADefinir;
+    response: IAppState;
     isLoading: boolean;
 }
 
-export interface INomeADefinir {
+export interface IAppState {
     status: string;
     data: IInvestmntListState;
 }

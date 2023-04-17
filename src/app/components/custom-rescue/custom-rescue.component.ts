@@ -20,7 +20,7 @@ export class CustomRescueComponent implements OnInit {
   thisIsMyForm = new FormGroup({
     formArrayName: this.formBuilder.array([])
   });
-  investment: IInvestmentListItemState;
+  investmentItem: IInvestmentListItemState;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,19 +30,19 @@ export class CustomRescueComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.customRescue$.subscribe((state) => this.investment = state);
+    this.customRescue$.subscribe((state) => this.investmentItem = state);
     this.buildForm();
   }
 
   buildForm() {
     const controlArray = this.thisIsMyForm.get('formArrayName') as FormArray;
 
-    Object.keys(this.investment.acoes).forEach((i) => {
+    Object.keys(this.investmentItem.acoes).forEach((i) => {
       controlArray.push(
         this.formBuilder.group({
           id: i,
-          action:this.investment.acoes[parseInt(i)].nome,
-          accumulatedBalance: this.investment.saldoTotal * (this.investment.acoes[parseInt(i)].percentual / 100),
+          action:this.investmentItem.acoes[parseInt(i)].nome,
+          accumulatedBalance: this.investmentItem.saldoTotal * (this.investmentItem.acoes[parseInt(i)].percentual / 100),
           valueToRedeem: new FormControl({ value: null, disabled: false })
         })
       )
@@ -50,10 +50,10 @@ export class CustomRescueComponent implements OnInit {
   }
 
   openModal() {
-    const test = this.thisIsMyForm.value.formArrayName?.filter((value: any) => value.valueToRedeem > value.accumulatedBalance);
+    const Investmentarray = this.thisIsMyForm.value.formArrayName?.filter((value: any) => value.valueToRedeem > value.accumulatedBalance);
     
-    if (test?.length) {
-      this.dialog.open(ErrorModalComponent, { width: '623px', data: test });
+    if (Investmentarray?.length) {
+      this.dialog.open(ErrorModalComponent, { width: '623px', data: Investmentarray });
     } else {
       this.dialog.open(SuccessModalComponent, { width: '623px' });
     }
