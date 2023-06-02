@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IInvestmentListItemState, IResponseState } from 'src/app/store/investment-list/investment-list.state';
-import { Router } from '@angular/router';
+
 import { loadInvestmentList } from 'src/app/store/investment-list/investment-list.actions';
-import { saveInvestment } from 'src/app/store/custom-rescue/custom-rescue.actions';
 import { getInvestmentList } from 'src/app/store/investment-list/investment-list.selector';
-import { MonetaryShortage } from 'src/shared/enum/monetary-shortage';
+import { IInvestmentListItemState } from 'src/app/store/investment-list/investment-list.state';
+
+import { saveInvestment } from 'src/app/store/custom-rescue/custom-rescue.actions';
+
+import { MonetaryShortage } from 'src/app/core/enums/monetary-shortage.enum';
 
 @Component({
-  selector: 'app-investment-list',
-  templateUrl: './investment-list.component.html',
-  styleUrls: ['./investment-list.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class InvestmentListComponent {
+export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['name', 'objective', 'currentBalance'];
-  investmentList$ = this.store.pipe(select(getInvestmentList));
+  investmentList$: Observable<IInvestmentListItemState[]> = this.store.pipe(select(getInvestmentList));
 
   constructor(
-    public router: Router,
-    private store: Store) { }
+    private store: Store,
+    private router: Router,) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadInvestmentList());
@@ -27,7 +30,7 @@ export class InvestmentListComponent {
 
   goToDetail(investment: IInvestmentListItemState) {
     this.store.dispatch(saveInvestment({ payload: investment }));
-    
+
     if (investment.indicadorCarencia == MonetaryShortage.NO)
       this.router.navigate(['resgate-personalizado']);
   }

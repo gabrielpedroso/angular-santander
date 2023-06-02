@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { InvestmentListComponent } from "./components/investment-list/investment-list.component";
-import { CustomRescueComponent } from "./components/custom-rescue/custom-rescue.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { CustomRescueComponent } from "./pages/custom-rescue/custom-rescue.component";
 
 const routes: Routes = [
-    { path: '', component: InvestmentListComponent },
+    { path: '', component: HomeComponent },
     { path: 'resgate-personalizado', component: CustomRescueComponent },
 ];
 

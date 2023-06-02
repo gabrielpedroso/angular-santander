@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SuccessModalComponent } from '../success-modal/success-modal.component';
-import { ErrorModalComponent } from '../error-modal/error-modal.component';
+import { SuccessModalComponent } from '../../components/success-modal/success-modal.component';
+import { ErrorModalComponent } from '../../components/error-modal/error-modal.component';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IInvestmentListItemState } from 'src/app/store/investment-list/investment-list.state';
 import { getCustomRescue } from 'src/app/store/custom-rescue/custom-rescue.selector';
@@ -51,7 +51,7 @@ export class CustomRescueComponent implements OnInit {
 
   openModal() {
     const Investmentarray = this.thisIsMyForm.value.formArrayName?.filter((value: any) => value.valueToRedeem > value.accumulatedBalance);
-    
+
     if (Investmentarray?.length) {
       this.dialog.open(ErrorModalComponent, { width: '623px', data: Investmentarray });
     } else {

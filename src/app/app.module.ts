@@ -16,8 +16,13 @@ import { AppMaterialModule } from './app.material.module';
 import { rootEffects, rootReducers } from './store/index';
 
 import { AppComponent } from './app.component';
-import { InvestmentListComponent } from './components/investment-list/investment-list.component';
-import { CustomRescueComponent } from './components/custom-rescue/custom-rescue.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CustomRescueComponent } from './pages/custom-rescue/custom-rescue.component';
+
+import { AppTitleComponent } from './components/app-title/app-title.component';
+
+
+
 import { HeaderContentComponent } from './components/header-content/header-content.component';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
@@ -25,8 +30,11 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 @NgModule({
   declarations: [
     AppComponent,
-    InvestmentListComponent,
+    HomeComponent,
     CustomRescueComponent,
+
+    AppTitleComponent,
+
     HeaderContentComponent,
     SuccessModalComponent,
     ErrorModalComponent,
