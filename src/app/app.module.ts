@@ -19,11 +19,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CustomRescueComponent } from './pages/custom-rescue/custom-rescue.component';
 
-import { AppTitleComponent } from './components/app-title/app-title.component';
+import { AppTitleComponent } from './shared/app-title/app-title.component';
+import { AppIconCardComponent } from './shared/app-icon-card/app-icon-card.component';
 
-
-
-import { HeaderContentComponent } from './components/header-content/header-content.component';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 
@@ -34,8 +32,8 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     CustomRescueComponent,
 
     AppTitleComponent,
+    AppIconCardComponent,
 
-    HeaderContentComponent,
     SuccessModalComponent,
     ErrorModalComponent,
   ],

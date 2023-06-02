@@ -3,26 +3,26 @@
     <app-title text="DADOS DO INVESTIMENTO"></app-title>
 
     <div class="container-investment-data-content">
-      <app-header-content
+      <app-icon-card
         icon="person"
         title="Nome"
-        [content]="investment.nome"
+        [text]="investment.nome"
       >
-      </app-header-content>
+      </app-icon-card>
 
-      <app-header-content
+      <app-icon-card
         icon="analytics"
         title="Objetivo"
-        [content]="investment.objetivo"
+        [text]="investment.objetivo"
       >
-      </app-header-content>
+      </app-icon-card>
 
-      <app-header-content
+      <app-icon-card
         icon="monetization_on"
         title="Saldo Total"
-        [content]="formatMoney(investment.saldoTotal)"
+        [text]="formatMoney(investment.saldoTotal)"
       >
-      </app-header-content>
+      </app-icon-card>
     </div>
   </div>
 
