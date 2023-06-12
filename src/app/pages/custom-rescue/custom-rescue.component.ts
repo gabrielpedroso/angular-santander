@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { SuccessModalComponent } from '../../components/success-modal/success-modal.component';
 import { ErrorModalComponent } from '../../components/error-modal/error-modal.component';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IInvestmentListItemState } from 'src/app/store/investment-list/investment-list.state';
 import { getCustomRescue } from 'src/app/store/custom-rescue/custom-rescue.selector';
 import { Router } from '@angular/router';
+
+import { IInformationCard } from 'src/app/features/information-card/information-card';
 
 @Component({
   selector: 'app-custom-rescue',
@@ -80,7 +81,7 @@ export class CustomRescueComponent implements OnInit {
     return show;
   }
 
-  formatMoney(value: number) {
+  formatMoney(value: number): string {
     return new Intl.NumberFormat('pt-Br', { currency: 'BRL', style: 'currency' }).format(value);
   }
 
@@ -90,5 +91,27 @@ export class CustomRescueComponent implements OnInit {
 
   goToInvestmentList() {
     this.router.navigate(['']);
+  }
+
+  get dataCard(): IInformationCard[] {
+    const items: IInformationCard[] = [
+      {
+        icon: 'fa-user',
+        title: 'Nome',
+        text: this.investmentItem.nome,
+      },
+      {
+        icon: 'fa-chart-line',
+        title: 'Objetivo',
+        text: this.investmentItem.objetivo,
+      },
+      {
+        icon: 'fa-dollar-sign',
+        title: 'Saldo Total',
+        text: this.formatMoney(this.investmentItem.saldoTotal),
+      },
+    ];
+
+    return items;
   }
 }

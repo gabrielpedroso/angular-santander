@@ -1,29 +1,11 @@
 <div class="container" *ngIf="customRescue$ | async as investment">
   <div class="container-investment-data">
-    <app-title text="DADOS DO INVESTIMENTO"></app-title>
-
-    <div class="container-investment-data-content">
-      <app-icon-card
-        icon="person"
-        title="Nome"
-        [text]="investment.nome"
-      >
-      </app-icon-card>
-
-      <app-icon-card
-        icon="analytics"
-        title="Objetivo"
-        [text]="investment.objetivo"
-      >
-      </app-icon-card>
-
-      <app-icon-card
-        icon="monetization_on"
-        title="Saldo Total"
-        [text]="formatMoney(investment.saldoTotal)"
-      >
-      </app-icon-card>
-    </div>
+    <app-title
+      text="DADOS DO INVESTIMENTO">
+    </app-title>
+    <app-information-card
+      [items]="dataCard">
+    </app-information-card>
   </div>
 
   <div class="container-value-to-redeem">

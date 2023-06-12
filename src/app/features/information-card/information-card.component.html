@@ -1,0 +1,15 @@
+<div class="container" [ngStyle]="style">
+  <div
+    class="container-item"
+    *ngFor="let item of items">
+    <i [class]="item.icon" class="fa-solid"></i>
+    <div class="container-item-information">
+      <span class="container-item-information-title">
+        {{ item.title }}
+      </span>
+      <span class="container-item-information-text">
+        {{ item.text }}
+      </span>
+    </div>
+  </div>
+</div>
