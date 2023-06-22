@@ -1,45 +1,45 @@
-<div class="container" *ngIf="customRescue$ | async as investment">
-  <div class="container-investment-data">
+<div class="container">
+
+  <div class="container-header">
     <app-title
       text="DADOS DO INVESTIMENTO">
     </app-title>
+
     <app-information-card
       [items]="dataCard">
     </app-information-card>
   </div>
 
-  <div class="container-value-to-redeem">
-    <app-title text="RESGATE"></app-title>
+  <div class="container-content">
+    <app-title
+      text="RESGATE">
+    </app-title>
 
-    <div class="container-value-to-redeem-table">
-      <div class="container-value-to-redeem-table-header">
-        <span>Acao</span>
-        <span>Saldo Acumulado</span>
-        <span>Valor a resgatar</span>
-      </div>
-      <mat-divider></mat-divider>
-      <form id="myForm" [formGroup]="thisIsMyForm">
-        <div [formArrayName]="'formArrayName'">
-          <div *ngFor="let x of investment.acoes; let i = index">
-            <div
-              class="container-value-to-redeem-table-content-row"
-              [formGroupName]="i"
-            >
-              <span class="container-value-to-redeem-table-content-row-column">
-                {{ x.nome }}
-              </span>
-              <span class="container-value-to-redeem-table-content-row-column">
-                {{ formatMoney(investment.saldoTotal * (x.percentual / 100)) }}
-              </span>
-              <div class="container-value-to-redeem-table-content-row-input">
-                <mat-form-field
-                  appearance="outline"
-                  class="container-value-to-redeem-table-content-row-input-field"
-                >
-                  <mat-label>Digite quanto quer resgatar</mat-label>
+    <form
+      [formGroup]="tableForm"
+      class="container-content-form">
+      <table>
+
+        <thead>
+          <tr>
+            <th>Ação</th>
+            <th>Saldo Acumulado</th>
+            <th>Valor a resgatar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container formArrayName="investments">
+            <ng-container *ngFor="let data of investments.controls; index as i;">
+              <tr [formGroupName]="i">
+                <td> {{ data.value['action'] }} </td>
+                <td>
+                  {{ formatMoney(data.value['accumulatedBalance']) }}
+                </td>
+                <td>
                   <input
                     formControlName="valueToRedeem"
-                    matInput
+                    placeholder="Digite quanto quer resgatar"
                     currencyMask
                     [options]="{
                       align: 'left',
@@ -48,42 +48,38 @@
                       decimal: ','
                     }"
                   />
-                </mat-form-field>
-                <span
-                  class="container-value-to-redeem-table-content-row-input-erro"
-                  *ngIf="mostrar(i)"
-                >
-                  O valor a resgatar nao pode ser maior que
-                  {{
-                    formatMoney(investment.saldoTotal * (x.percentual / 100))
-                  }}
-                </span>
-              </div>
-            </div>
-            <mat-divider></mat-divider>
-          </div>
-        </div>
-      </form>
-    </div>
+                  <div
+                    *ngIf="showErro(data.value['id'])"
+                    class="container-content-form-error-message">
+                    O valor a resgatar nao pode ser maior que {{ formatMoney(data.value['accumulatedBalance']) }}
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
 
-    <div class="container-value-to-redeem-amount">
-      <span>Valor total do resgate: </span>
-      <span>{{ formatMoney(getSomaTotal()) }}</span>
-    </div>
+      </table>
+    </form>
   </div>
 
-  <div class="container-buttons">
-    <button mat-flat-button type="button" (click)="goToInvestmentList()">
-      CANCELAR
-    </button>
-    <button
-      mat-flat-button
+  <div class="container-result">
+    <span>Valor total do resgate: </span>
+    {{ formatMoney(totalValue) }}
+  </div>
+
+  <div class="container-bottom">
+    <app-flat-button
+      lable="Cancelar"
+      color="basic"
+      (onClick)="goToInvestmentList()">
+    </app-flat-button>
+
+    <app-flat-button
+      lable="Confirmar Resgate"
       color="primary"
-      type="button"
-      (click)="openModal()"
-      [disabled]="!hasValue"
-    >
-      CONFIRMAR RESGATE
-    </button>
+      (onClick)="openModal()">
+    </app-flat-button>
   </div>
+
 </div>

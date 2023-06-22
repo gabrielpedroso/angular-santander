@@ -1,0 +1,22 @@
+
+.app-button {
+  width: 100%;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 2rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+
+  &-color {
+    &-basic {
+      border: 1px solid #818283;
+      background-color: #A5A6A7;
+    }
+
+    &-primary {
+      border: 1px solid #499EDB;
+      background-color: #007AD3;
+    }
+
+  }
+}

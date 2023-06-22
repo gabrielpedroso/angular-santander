@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -22,6 +23,8 @@ import { CustomRescueComponent } from './pages/custom-rescue/custom-rescue.compo
 import { InformationCardComponent } from './features/information-card/information-card.component';
 
 import { AppTitleComponent } from './shared/app-title/app-title.component';
+import { AppButtonComponent } from './shared/app-button/app-button.component';
+import { AppFlatButtonComponent } from './shared/app-button/app-flat-button/app-flat-button.component';
 
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
@@ -35,6 +38,8 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     InformationCardComponent,
 
     AppTitleComponent,
+    AppButtonComponent,
+    AppFlatButtonComponent,
 
     SuccessModalComponent,
     ErrorModalComponent,
@@ -54,7 +59,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     ReactiveFormsModule,
     CurrencyMaskModule,
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent],
   entryComponents: [
     SuccessModalComponent,

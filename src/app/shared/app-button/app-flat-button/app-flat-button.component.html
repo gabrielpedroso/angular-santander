@@ -1,0 +1,11 @@
+<button
+  [type]="type"
+  class="app-button"
+  [ngClass]="{
+    'app-button-color-basic': color === 'basic',
+    'app-button-color-primary': color === 'primary',
+  }"
+  (click)="click()"
+>
+  {{ lable }}
+</button>
